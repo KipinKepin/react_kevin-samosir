@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+</head>
+
+<body>
+    <h1>Create Product</h1>
+    <h2>Detail Product</h2>
+    <form action="./landingPage.html">
+        <label for="product_name">Product Name :</label>
+        <br>
+        <input type="text" id="product_name" min="6" max="50" required>
+        <br>
+        <br>
+        <label for="product_category">Product Category :</label>
+        <br>
+        <select id="product_category" required>
+            <option value="Category 1">Category 1</option>
+            <option value="Category 2">Category 2</option>
+            <option value="Category 3">Category 3</option>
+            <option value="Category 4">Category 4</option>
+        </select>
+        <br><br>
+        <input type="radio" id="brand_new" required>
+        <label for="brand_new">Brand New</label>
+        <br>
+        <input type="radio" id="second_hank" required>
+        <label for="second_hank">Second Hank</label>
+        <br>
+        <input type="radio" id="refurbished" required>
+        <label for="refurbished">Refurbished</label>
+        <br>
+        <br>
+        <label for="gambar">Image of Product</label>
+        <input id="gambar" type="file" required>
+        <br>
+        <br>
+        <label for="additional">Additional Description</label>
+        <br>
+        <textarea id="additional" cols="30" rows="10" required></textarea>
+        <br>
+        <br>
+        <label for="price">Product Price :</label>
+        <br>
+        <input type="number" id="price" placeholder="$ 100" required>
+        <br>
+        <br>
+        <button>Submit</button>
+    </form>
+</body>
+
+</html>
