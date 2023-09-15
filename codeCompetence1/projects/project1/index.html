@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #656060;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="">Quotez</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="">Home</a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="nav-link text-light" href="">About</a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="nav-link text-light" href="">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container flex-grow-1 mt-5">
+        <div class="text-center">
+            <h1>Random Quote Generator</h1>
+            <em id="quote"></em>
+            <br>
+            <br>
+            <button id="generateButton" class="btn btn-primary">Generate Quote</button>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="row py-3">
+                    <h3 class="text-center"><em>Quotez</em></h3>
+                </div>
+                <div class="col-md-6">
+                    <p>Phone : +62 851-5503-5225</p>
+                    <p>Address : Del Institute of Technology</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <p>follow me on :</p>
+                    <a href="https://www.facebook.com/kevin.samosir.505" target="_blank class=" mx-2"><i
+                            class="fab fa-facebook-f fs-5"></i></a>
+                    <a href="https://www.instagram.com/kevinsmr__/" target="_blank" class="mx-2"><i
+                            class="fab fa-instagram fs-5"></i></a>
+                    <a href="https://www.linkedin.com/in/kevin-samosir-926a45207/" target="_blank" class="mx-2"><i
+                            class="fab fa-linkedin fs-5"></i></a>
+                </div>
+            </div>
+            <p class="text-center mt-3">&copy; 2023 KipinQuotes</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        async function fetchRandomQuote() {
+            try {
+                const response = await fetch("https://api.quotable.io/random");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch a quote");
+                }
+                const data = await response.json();
+                return data.content;
+            } catch (error) {
+                console.error(error);
+                return "An error occurred while fetching the quote.";
+            }
+        }
+
+        async function generateRandomQuote() {
+            const randomQuote = await fetchRandomQuote();
+            document.getElementById("quote").textContent = randomQuote;
+        }
+
+        document.getElementById("generateButton").addEventListener("click", generateRandomQuote);
+
+        generateRandomQuote();
+    </script>
+</body>
+
+</html>
