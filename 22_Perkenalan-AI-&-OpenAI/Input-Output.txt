@@ -1,0 +1,184 @@
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+input :
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+
+        const dummyUser = { username: 'admin', password: 'password123' };
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        if (storedUser && storedUser.username === username && storedUser.password === password) {
+            // User exists in local storage, set user data
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('user', JSON.stringify(storedUser));
+            // Navigate to the CreateProduct page
+            navigate('/create');
+        } else if (username === dummyUser.username && password === dummyUser.password) {
+            // Dummy user is used for initial login, set user in local storage and navigate
+            localStorage.setItem('user', JSON.stringify(dummyUser));
+            localStorage.setItem('isLoggedIn', true);
+            // Navigate to the CreateProduct page
+            navigate('/create');
+        } else {
+            // Invalid username or password
+            setErrorMessage('Invalid username or password');
+        }
+    };
+
+    return (
+        <div className="container mt-5">
+            <form onSubmit={handleLogin} className="mt-3">
+                <div className="container">
+                    <h1 className='text-center'>Login</h1>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username:</label>
+                    <input type="text" className="form-control" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password:</label>
+                    <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+                {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
+            </form>
+        </div>
+    );
+};
+
+export default Login;
+
+jelaskan codenya secara singkat, gunakan maksimal 1000 kata
+
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+output : 
+Code di atas adalah komponen Login dalam aplikasi React. Komponen ini digunakan untuk menampilkan form login dan melakukan proses autentikasi. 
+
+Pada awalnya, kita mengimpor beberapa modul dari React dan react-router-dom, serta file CSS dari Bootstrap. 
+
+Kemudian, kita mendefinisikan komponen Login sebagai sebuah fungsi. Di dalam komponen ini, kita menggunakan useState hook dari React untuk membuat beberapa state, yaitu username, password, dan errorMessage. State ini akan digunakan untuk menyimpan nilai input dari form dan pesan kesalahan jika ada. 
+
+Selanjutnya, kita menggunakan useNavigate hook dari react-router-dom untuk mendapatkan fungsi navigate yang akan digunakan untuk mengarahkan pengguna ke halaman lain setelah login berhasil. 
+
+Kemudian, kita mendefinisikan fungsi handleLogin yang akan dipanggil ketika form login disubmit. Fungsi ini akan melakukan validasi username dan password yang diinputkan oleh pengguna. Jika username dan password sesuai dengan yang ada di local storage, maka kita akan mengatur isLoggedIn menjadi true dan menyimpan data pengguna di local storage. Setelah itu, kita akan mengarahkan pengguna ke halaman CreateProduct. Jika username dan password sesuai dengan dummyUser yang telah ditentukan, maka kita akan mengatur isLoggedIn menjadi true dan menyimpan dummyUser di local storage. Setelah itu, kita juga akan mengarahkan pengguna ke halaman CreateProduct. Jika username dan password tidak sesuai dengan yang ada di local storage maupun dummyUser, maka kita akan menampilkan pesan kesalahan. 
+
+Kemudian, di dalam fungsi render, kita mengembalikan elemen HTML yang berisi form login. Ketika form disubmit, fungsi handleLogin akan dipanggil. Input username dan password akan dihubungkan dengan state menggunakan event onChange. Jika ada pesan kesalahan, pesan tersebut akan ditampilkan di bawah tombol login.
+
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+input :
+Hello all, my name is Kevin and I like playing chess.
+translate to french
+
+output :
+Bonjour à tous, je m'appelle Kevin et j'aime jouer aux échecs.
+
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+input :
+Analyze the pros and cons of remote work vs. office work
+
+output :
+Remote Work:
+
+Pros:
+1. Flexibility: Remote work offers workers the flexibility to work from anywhere and at any time, which can lead to improved work-life balance.
+2. Savings: It eliminates commuting costs and time spent travelling, and can potentially reduce costs related to professional wardrobe and meals.
+3. Productivity: Some studies suggest that remote employees are often more productive due to fewer distractions and interruptions.
+4. Health and wellness: Remote work can reduce stress and provide opportunities for healthier lifestyle choices, such as cooking at home and time for exercise.
+
+Cons:
+1. Isolation: Working remotely can lead to feelings of isolation and loneliness, which may impact employee morale and productivity.
+2. Communication challenges: Remote workers may face communication barriers or delays due to different time zones or the inability to have face-to-face conversations.
+3. Home distractions: While office distractions are reduced, home distractions might increase, affecting concentration and productivity.
+4. Boundaries: It can be difficult to separate work and personal life when working from home, which may lead to overworking or difficulty in unwinding.
+
+Office Work:
+
+Pros:
+1. Social Interaction: Office work provides more opportunity for social interaction and relationship building, which can lead to greater team cohesion and collaboration.
+2. Immediate response: Communication is typically quicker and clearer in an office setting, allowing for faster problem-solving and decision-making.
+3. Mentoring and Training: Office work provides an environment suitable for on-the-spot guidance, learning, and mentoring.
+4. Structured Environment: An office work environment often provides a structured work schedule and clear boundaries between work and personal life.
+
+Cons:
+1. Commuting: The time and expense of commuting can be a significant drawback of office work.
+2. Limited Flexibility: Office work often carries a strict schedule which can limit flexibility for personal commitments.
+3. Increased Overhead: If you own a business, maintaining a physical office space is often more expensive than managing a remote workforce due to rent, utilities, office supplies, and more.
+4. Distractions: Despite being a structured environment, office work can come with its own set of distractions such as noise from co-workers and impromptu meetings.
+
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+input :
+Product description: A home milkshake maker
+Seed words: fast, healthy, compact.
+
+output :
+1. QuickBlend Milkshake Maker
+2. HealthFizz Compact Milkshake Machine
+3. SpeedyBlend Healthy Milkshake Maker
+4. NutriBlend Compact Milkshake Machine
+5. FastMix Healthy Home Milkshake Maker
+6. MiniBlend Speedy Milkshake Maker
+7. FitFizz Compact Milkshake Machine
+8. RapidBlend Healthy Milkshake Maker
+9. QuickMix Mini Milkshake Maker
+10. NutriFast Compact Milkshake Machine
+
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+input :
+Make a single page website that shows off different neat javascript features for drop-downs and things to display information. The website should be an HTML file with embedded javascript and CSS.
+
+output :
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Features</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .dropdown {
+            width: 200px;
+        }
+        .info {
+            margin-top: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Features</h1>
+    <p>Select a feature from the dropdown to see more information:</p>
+    <select id="featureSelect" class="dropdown" onchange="showInfo(this.value)">
+        <option value="">Select a feature...</option>
+        <option value="feature1">Feature 1</option>
+        <option value="feature2">Feature 2</option>
+        <option value="feature3">Feature 3</option>
+    </select>
+    <div id="feature1" class="info">Feature 1 is a cool JavaScript feature that allows you to do amazing things!</div>
+    <div id="feature2" class="info">Feature 2 is another awesome JavaScript feature that makes your website interactive!</div>
+    <div id="feature3" class="info">Feature 3 is a fantastic JavaScript feature that enhances user experience!</div>
+
+    <script>
+        function showInfo(feature) {
+            var i;
+            var x = document.getElementsByClassName("info");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            document.getElementById(feature).style.display = "block";  
+        }
+    </script>
+</body>
+</html>
